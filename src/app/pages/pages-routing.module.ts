@@ -4,22 +4,19 @@ import { RouterModule, Routes } from '@angular/router';
 import { PagesComponent } from './pages.component';
 // import { DashboardComponent } from './dashboard/dashboard.component';
 import { NewStoryComponent } from './new-story/new-story/new-story.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 // import { HistoryContainerComponent } from './history/history-container/history-container.component';
 
 const routes: Routes = [{
   path: '',
   component: PagesComponent,
   children: [
-    // {
-    //   path: 'dashboard',
-    //   component: DashboardComponent,
-    // },
     {
-      path: 'new-story',
-      component: NewStoryComponent,
+      path: 'dashboard',
+      component: DashboardComponent,
     },
     {
-      path: '',
+      path: 'new-story',
       component: NewStoryComponent,
     },
     // {
@@ -28,7 +25,7 @@ const routes: Routes = [{
     // },
     {
       path: '',
-      redirectTo: 'new-story',
+      redirectTo: 'dashboard',
       pathMatch: 'full',
     }],
 }];
