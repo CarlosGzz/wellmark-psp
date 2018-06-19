@@ -1,0 +1,23 @@
+<mat-horizontal-stepper #stepper
+                        [linear]="true">
+  <mat-step *ngFor="let step of stepsCompleted;let i = index;"
+            [completed]="stepsCompleted[i]">
+    <ng-template matStepLabel>Planning</ng-template>
+    <app-new-story-stepper-step (complete)="complete(i)"
+                                (next)="next()"></app-new-story-stepper-step>
+  </mat-step>
+  <!-- <mat-step [completed]="stepsCompleted[1]"
+            label="Planning">
+    <app-new-story-stepper-step (complete)="complete(1)"
+                                (next)="next()"></app-new-story-stepper-step>
+  </mat-step>
+  <mat-step [completed]="stepsCompleted[2]"
+            label="Planning">
+    <app-new-story-stepper-step (complete)="complete(2)"
+                                (next)="next()"></app-new-story-stepper-step>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    You are now done.
+  </mat-step> -->
+</mat-horizontal-stepper>

@@ -1,1 +1,218 @@
-<h1>New Story</h1>
+<h1 class="mat-h1">
+  New Story
+  <button mat-mini-fab
+          color="warn">
+    <mat-icon aria-label="Report a defect within the story">bug_report</mat-icon>
+  </button>
+</h1>
+
+<mat-accordion class="example-headers-align">
+  <mat-expansion-panel [expanded]="step === 0"
+                       (opened)="setStep(0)"
+                       hideToggle="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Planning
+      </mat-panel-title>
+      <mat-panel-description>
+        <mat-progress-bar mode="determinate"
+                          value="0"
+                          width="0%"></mat-progress-bar>
+        <mat-icon>grade</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-horizontal-stepper [linear]="true"
+                            #stepper1
+                            id="stepper1">
+      <mat-step [completed]="step1Completed"
+                label="Planning">
+        <p>Step 1</p>
+        <p>{{ step1Completed }}</p>
+        <button mat-button
+                (click)="complete()"
+                mat-raised-button
+                color="primary">Complete</button>
+        <button mat-button
+                (click)="next()"
+                mat-raised-button
+                color="primary">NextB</button>
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Fill out your address</ng-template>
+          <mat-form-field>
+            <input matInput
+                   placeholder="Address"
+                   formControlName="secondCtrl"
+                   required>
+          </mat-form-field>
+          <div>
+            <button mat-button
+                    matStepperPrevious>Back</button>
+            <button mat-button
+                    matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        You are now done.
+        <div>
+          <button mat-button
+                  matStepperPrevious>Back</button>
+          <button mat-button
+                  (click)="stepper.reset()">Reset</button>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+    <mat-action-row>
+      <button mat-button
+              color="warn"
+              (click)="prevStep()">Previous</button>
+      <button mat-button
+              color="primary"
+              (click)="nextStep()">End</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel [expanded]="step === 1"
+                       (opened)="setStep(1)"
+                       hideToggle="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Postmortem
+      </mat-panel-title>
+      <mat-panel-description>
+        <mat-progress-bar mode="determinate"
+                          value="0"
+                          width="50%"></mat-progress-bar>
+        <mat-icon>grade</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-horizontal-stepper [linear]="true"
+                            #stepper>
+      <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>Fill out your name</ng-template>
+          <mat-form-field>
+            <input matInput
+                   placeholder="Last name, First name"
+                   formControlName="firstCtrl"
+                   required>
+          </mat-form-field>
+          <div>
+            <button mat-button
+                    matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Fill out your address</ng-template>
+          <mat-form-field>
+            <input matInput
+                   placeholder="Address"
+                   formControlName="secondCtrl"
+                   required>
+          </mat-form-field>
+          <div>
+            <button mat-button
+                    matStepperPrevious>Back</button>
+            <button mat-button
+                    matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        You are now done.
+        <div>
+          <button mat-button
+                  matStepperPrevious>Back</button>
+          <button mat-button
+                  (click)="stepper.reset()">Reset</button>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+    <mat-action-row>
+      <button mat-button
+              color="warn"
+              (click)="prevStep()">Previous</button>
+      <button mat-button
+              color="primary"
+              (click)="nextStep()">Next</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+
+  <mat-expansion-panel [expanded]="step === 2"
+                       (opened)="setStep(2)"
+                       hideToggle="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Postmortem
+      </mat-panel-title>
+      <mat-panel-description>
+        <mat-progress-bar mode="determinate"
+                          value="0"
+                          width="50%"></mat-progress-bar>
+        <mat-icon>grade</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-horizontal-stepper [linear]="true"
+                            #stepper>
+      <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>Fill out your name</ng-template>
+          <mat-form-field>
+            <input matInput
+                   placeholder="Last name, First name"
+                   formControlName="firstCtrl"
+                   required>
+          </mat-form-field>
+          <div>
+            <button mat-button
+                    matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Fill out your address</ng-template>
+          <mat-form-field>
+            <input matInput
+                   placeholder="Address"
+                   formControlName="secondCtrl"
+                   required>
+          </mat-form-field>
+          <div>
+            <button mat-button
+                    matStepperPrevious>Back</button>
+            <button mat-button
+                    matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        You are now done.
+        <div>
+          <button mat-button
+                  matStepperPrevious>Back</button>
+          <button mat-button
+                  (click)="stepper.reset()">Reset</button>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+    <mat-action-row>
+      <button mat-button
+              color="warn"
+              (click)="prevStep()">Previous</button>
+      <button mat-button
+              color="primary"
+              (click)="nextStep()">End</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+  <app-new-story-process-panel></app-new-story-process-panel>
+</mat-accordion>
