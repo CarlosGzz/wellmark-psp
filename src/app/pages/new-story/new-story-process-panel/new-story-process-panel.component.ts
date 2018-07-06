@@ -1,5 +1,6 @@
-import { MatHorizontalStepper } from '@angular/material';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Process, SubProcess } from './../new-story/process';
+
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-new-story-process-panel',
@@ -7,17 +8,13 @@ import { Component, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./new-story-process-panel.component.css']
 })
 export class NewStoryProcessPanelComponent implements OnInit {
-  @ViewChild('stepper1') stepper1: MatHorizontalStepper;
-  @ViewChild('stepper2') stepper2: MatHorizontalStepper;
-  @ViewChild('stepper3') stepper3: MatHorizontalStepper;
+  @Input() process = {};
   step = 0;
-  step1Completed = false;
-  step2Completed = false;
+  completion = false;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   setStep(index: number) {
     this.step = index;
@@ -31,12 +28,10 @@ export class NewStoryProcessPanelComponent implements OnInit {
     this.step--;
   }
 
-  complete() {
-    this.step1Completed = true;
+  get progressValue() {
+    if (this.process['subProcess']) {
+      return (this.process['subProcess'].filter(subProcess => subProcess.status === true).length / this.process['subProcess'].length) * 100;
+    }
+    return 0;
   }
-
-  next() {
-    this.stepper1.next();
-  }
-
 }

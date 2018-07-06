@@ -1,4 +1,4 @@
-<mat-toolbar class="example-header">
+<mat-toolbar class="header">
   <button mat-icon-button
           (click)="sidenav.toggle()">
     <mat-icon>menu</mat-icon>
@@ -6,21 +6,26 @@
   Wellmark Accenture PSP APP
 </mat-toolbar>
 
-<mat-sidenav-container class="example-container">
+<mat-sidenav-container class="container">
   <mat-sidenav #sidenav
                mode="side"
                opened="true"
-               class="example-sidenav">
+               class="sidenav">
     <mat-nav-list>
-      <a mat-list-item
-         routerLink="."
-         *ngFor="let nav of menu">{{nav.title}}</a>
+      <mat-list-item *ngFor="let navItem of menu">
+        <a matLine
+           [href]="navItem.link">
+          {{ navItem.title }}
+        </a>
+      </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <ng-content select="router-outlet"></ng-content>
+    <div class="main-content-container ">
+      <ng-content select="router-outlet"></ng-content>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
 
-<mat-toolbar class="example-footer">Footer</mat-toolbar>
+<mat-toolbar class="footer">Footer</mat-toolbar>

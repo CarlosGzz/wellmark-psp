@@ -1,10 +1,9 @@
-<p>Step 1</p>
+<app-step-list *ngIf="type === 'list'"
+               [list]="stepData"
+               (complete)="complete.emit()"
+               (next)="next.emit()"></app-step-list>
 
-<button mat-button
-        (click)="complete.emit()"
-        mat-button
-        color="primary">Complete</button>
-<button mat-button
-        (click)="next.emit()"
-        mat-button
-        color="primary">NextB</button>
+<app-step-estimation *ngIf="type === 'estimation'"
+               [list]="stepData"
+               (complete)="complete.emit()"
+               (next)="next.emit()"></app-step-estimation>

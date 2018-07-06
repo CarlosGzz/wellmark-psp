@@ -1,13 +1,17 @@
 <h1 class="mat-h1">
   New Story
   <button mat-mini-fab
-          color="warn">
+          color="warn"
+          (click)="openDialog()">
     <mat-icon aria-label="Report a defect within the story">bug_report</mat-icon>
   </button>
 </h1>
-
+<li *ngIf="animal">
+  You chose:
+  <i>{{animal}}</i>
+</li>
 <mat-accordion class="example-headers-align">
-  <mat-expansion-panel [expanded]="step === 0"
+  <!-- <mat-expansion-panel [expanded]="step === 0"
                        (opened)="setStep(0)"
                        hideToggle="true">
     <mat-expansion-panel-header>
@@ -144,7 +148,6 @@
     </mat-action-row>
   </mat-expansion-panel>
 
-
   <mat-expansion-panel [expanded]="step === 2"
                        (opened)="setStep(2)"
                        hideToggle="true">
@@ -212,7 +215,9 @@
               color="primary"
               (click)="nextStep()">End</button>
     </mat-action-row>
-  </mat-expansion-panel>
+  </mat-expansion-panel> -->
 
-  <app-new-story-process-panel></app-new-story-process-panel>
+  <app-new-story-process-panel [process]="newStoryService.planningProcess$ | async"></app-new-story-process-panel>
+  <app-new-story-process-panel [process]="newStoryService.developmentProcess$ | async"></app-new-story-process-panel>
+  <app-new-story-process-panel [process]="newStoryService.postmortemProcess$ | async"></app-new-story-process-panel>
 </mat-accordion>

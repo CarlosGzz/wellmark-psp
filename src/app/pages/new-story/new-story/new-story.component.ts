@@ -1,6 +1,7 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { MatHorizontalStepper } from '@angular/material';
+import { BugModalComponent } from './../bug-modal/bug-modal.component';
+import { NewStoryService } from './new-story.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatHorizontalStepper, MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-new-story',
@@ -8,20 +9,23 @@ import { MatHorizontalStepper } from '@angular/material';
   styleUrls: ['./new-story.component.scss']
 })
 export class NewStoryComponent implements OnInit {
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
   step = 0;
-  @ViewChild('stepper1') stepper1: MatHorizontalStepper;
-  step1Completed = false;
+  animal: string;
+  name: string;
 
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor(public dialog: MatDialog, public newStoryService: NewStoryService) {}
 
   ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+    this.newStoryService.planningProcess$.subscribe(data => {
+      console.log(data);
     });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+
+    this.newStoryService.developmentProcess$.subscribe(data => {
+      console.log(data);
+    });
+
+    this.newStoryService.postmortemProcess$.subscribe(data => {
+      console.log(data);
     });
   }
 
@@ -37,12 +41,15 @@ export class NewStoryComponent implements OnInit {
     this.step--;
   }
 
-  complete() {
-    this.step1Completed = true;
-  }
+  openDialog(): void {
+    const dialogRef = this.dialog.open(BugModalComponent, {
+      width: '500px',
+      data: { name: this.name, animal: this.animal }
+    });
 
-  next() {
-    this.stepper1.next();
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.animal = result;
+    });
   }
-
 }

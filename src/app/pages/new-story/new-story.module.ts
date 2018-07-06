@@ -29,6 +29,8 @@ import { StepChecklistComponent } from './new-story-stepper/step-checklist/step-
 import { StepEstimationComponent } from './new-story-stepper/step-estimation/step-estimation.component';
 import { StepReviewComponent } from './new-story-stepper/step-review/step-review.component';
 import { NewStoryProcessPanelComponent } from './new-story-process-panel/new-story-process-panel.component';
+import { NewStoryService } from './new-story/new-story.service';
+import { BugModalComponent } from './bug-modal/bug-modal.component';
 
 const IMPORTS = [ThemeModule, CommonModule, FormsModule, ReactiveFormsModule];
 const MATERIAL_MODULES = [
@@ -58,11 +60,18 @@ const NEW_STORY_COMPONENTS = [
   StepListComponent,
   StepChecklistComponent,
   StepEstimationComponent,
-  StepReviewComponent
+  StepReviewComponent,
+  BugModalComponent
+];
+
+const PROVIDERS = [
+  NewStoryService
 ];
 
 @NgModule({
   imports: [...IMPORTS, ...MATERIAL_MODULES],
-  declarations: [...NEW_STORY_COMPONENTS]
+  declarations: [...NEW_STORY_COMPONENTS, BugModalComponent],
+  providers: [...PROVIDERS],
+  entryComponents: [BugModalComponent]
 })
 export class NewStoryModule {}

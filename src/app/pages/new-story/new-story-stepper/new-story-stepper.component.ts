@@ -1,18 +1,20 @@
 import { MatHorizontalStepper } from '@angular/material';
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-new-story-stepper',
   templateUrl: './new-story-stepper.component.html',
-  styleUrls: ['./new-story-stepper.component.css']
+  styleUrls: ['./new-story-stepper.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewStoryStepperComponent implements OnInit {
   @ViewChild('stepper') stepper: MatHorizontalStepper;
   step = 0;
-  @Input() steps: any = [];
+  @Input() subProcess: any;
+  @Output() steperComplete: EventEmitter<any> = new EventEmitter();
   stepsCompleted = [false, false, false];
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
   }
@@ -30,10 +32,14 @@ export class NewStoryStepperComponent implements OnInit {
   }
 
   complete(step) {
+    this.subProcess[step].status = true;
     this.stepsCompleted[step] = true;
   }
 
-  next() {
+  next(i) {
+    if (i >= this.subProcess.length - 1) {
+      this.steperComplete.emit();
+    }
     this.stepper.next();
   }
 }

@@ -1,12 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import {
+  MatToolbarModule,
+  MatButtonModule,
+  MatSidenavModule,
+  MatIconModule,
+  MatListModule,
+  MatProgressSpinnerModule
+} from '@angular/material';
 import { MyNavComponent } from './components/my-nav/my-nav.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 
-const MATERIAL_MODULES = [MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule];
+const MATERIAL_MODULES = [MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatProgressSpinnerModule];
 
 const COMPONENTS = [
   // ThemeSwitcherComponent,
@@ -26,6 +33,6 @@ const COMPONENTS = [
 @NgModule({
   imports: [...BASE_MODULES, ...MATERIAL_MODULES],
   declarations: [...COMPONENTS],
-  exports: [...BASE_MODULES, ...COMPONENTS],
+  exports: [...BASE_MODULES, ...COMPONENTS]
 })
 export class ThemeModule {}

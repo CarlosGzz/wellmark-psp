@@ -5,26 +5,18 @@ import { APP_BASE_HREF } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MyNavComponent } from './my-nav/my-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 
 @NgModule({
-  declarations: [AppComponent, MyNavComponent],
+  declarations: [AppComponent],
   imports: [
     AppRoutingModule,
     // NG MODULES
     BrowserModule,
     BrowserAnimationsModule,
-    LayoutModule,
-    // MATERIAL MODULES
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule
+    LayoutModule
   ],
-  providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [{ provide: APP_BASE_HREF, useValue: '/' }]
 })
 export class AppModule {}

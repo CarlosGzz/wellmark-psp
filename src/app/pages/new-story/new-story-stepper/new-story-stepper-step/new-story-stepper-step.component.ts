@@ -1,18 +1,19 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ChangeDetectionStrategy, Input } from '@angular/core';
 
 @Component({
   selector: 'app-new-story-stepper-step',
   templateUrl: './new-story-stepper-step.component.html',
-  styleUrls: ['./new-story-stepper-step.component.css']
+  styleUrls: ['./new-story-stepper-step.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewStoryStepperStepComponent implements OnInit {
-  @Output() complete: EventEmitter<any> = new EventEmitter;
-  @Output() previous: EventEmitter<any> = new EventEmitter;
-  @Output() next: EventEmitter<any> = new EventEmitter;
+  @Input() type: string;
+  @Input() stepData: any;
+  @Output() complete: EventEmitter<any> = new EventEmitter();
+  @Output() previous: EventEmitter<any> = new EventEmitter();
+  @Output() next: EventEmitter<any> = new EventEmitter();
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
